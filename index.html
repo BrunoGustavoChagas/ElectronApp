@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section>
+    <h3>Leitura de Arquivo</h3>
+    <p>Clique no botão 'Localizar' para encontrar o arquivo local desejado. (.txt)</p>
+    <label class="btn" for="textFileSelected">Localizar</label>
+    <input class="btn" type="file" id="textFileSelected">
+  </section>
+
+  <section class="fileUpload">
+    <h3>Escrita no Arquivo</h3>
+    <p>Utilize a campo de texto abaixo para criar ou editar o arquivo de texto.</br>Clique no botão 'Salvar' para salvar o arquivo localmente.</p>
+    <textarea rows="10" cols="50" id="textFilePrinted"></textarea>
+    <a href="" class="btn" onclick="saveTextAsFile()">Salvar</a>
+  </section>
+</body>
+
+<script>
+  var textFileSelected = document.getElementById('textFileSelected');
+  var textFilePrinted = document.getElementById('textFilePrinted');
+
+  textFileSelected.addEventListener('change', function (e) {
+    var file = textFileSelected.files[0];
+    var textType = /text.*/;
+
+    if (file.type.match(textType)) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        textFilePrinted.innerText = reader.result;
+      }
+
+      reader.readAsText(file);
+    } else {
+      textFilePrinted.innerText = "Formato não suportado"
+    }
+  });
+
+  function saveTextAsFile() {
+    var textToSave = document.getElementById("textFilePrinted").value;
+    var textToSaveAsBlob = new Blob([textToSave], { type: "text/plain;charset=utf-8" });
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = "text";
+
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+  }
+
+  function destroyClickedElement(event) {
+    document.body.removeChild(event.target);
+  }
+
+  require('./renderer.js')
+</script>
+
+</html>
