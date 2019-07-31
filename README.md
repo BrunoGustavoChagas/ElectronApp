@@ -21,6 +21,6 @@ rm -rf node_modules && npm i
 ```
 
 
-## Considerations
+## Considerações
 
 A solução foi desenvolvida com Javascript puro no processo de renderização. O script encontra-se no arquivo "index.html". 
