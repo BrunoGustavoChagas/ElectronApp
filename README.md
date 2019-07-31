@@ -15,6 +15,12 @@ Para execução do projeto é necessário:
 npm start
 ```
 
+** Em ambiente Linux, pode haver a necessidade de remover a pasta "node_modules". Nesse caso: 
+```
+rm -rf node_modules && npm i
+```
+
+
 ## Considerations
 
 A solução foi desenvolvida com Javascript puro no processo de renderização. O script encontra-se no arquivo "index.html". 
