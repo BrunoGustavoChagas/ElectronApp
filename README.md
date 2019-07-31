@@ -15,7 +15,7 @@ Para execução do projeto é necessário:
 npm start
 ```
 
-* No ambiente Linux pode haver necessidade de remover e reinstalar "node_modules". Nesse caso: 
+* No ambiente Linux (Ubuntu) pode haver necessidade de remover e reinstalar "node_modules". Nesse caso: 
 ```
 rm -rf node_modules && npm i
 ```
