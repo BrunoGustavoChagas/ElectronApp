@@ -15,7 +15,7 @@ Para execução do projeto é necessário:
 npm start
 ```
 
-** Em ambiente Linux, pode haver a necessidade de remover a pasta "node_modules". Nesse caso: 
+* Em ambiente Linux, pode haver a necessidade de remover a pasta "node_modules". Nesse caso: 
 ```
 rm -rf node_modules && npm i
 ```
